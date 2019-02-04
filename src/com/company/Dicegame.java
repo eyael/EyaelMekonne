@@ -1,63 +1,57 @@
-import static java.lang.System.*;
-import java.util.*;
+package com.company;
+
+import java.util.Random;
+import java.util.Scanner;
+
 
 public class Dicegame {
 
-
-
     public static void main(String args[]) {
+
+        Random r = new Random();
         int score = 0;
-        out.println("Welcome! Let's Play Roll Dice!");
-        pMechanics();
-    }
-    public static Scanner scan = new Scanner(in);
-    public static Random generator = new Random();
+        String userResponse=" ";
+        Scanner Keyboard = new Scanner(System.in);
 
-    public static int Score = 0;
-    public static int counter;
+        System.out.println("Welcome! Let's Play Roll Dice!");
 
-    public static int Roll() {
-        int Low = 1;
-        int High = 6;
-        int lost = 1;
-        int double_1 = 25;
-        int Random = generator.nextInt(High - Low) + Low;
-        return Random;
-    }
+     do {
+         int num1 = 1 + r.nextInt(6);
+         int num2 = 1 + r.nextInt(6);
+         System.out.println("your dices are" + num1 + "and" + num2);
 
-    public static void pMechanics() {
-        counter = 0;
-        out.println("Do you want to play this turn? (Y/N)");
-        String answer = scan.nextLine();
+         if (num1 == 1 && num2 == 1) {
+             score = score + 25;
+             System.out.println("your score" + score);
 
-        if (answer.equals("Y")) {
-            out.println("Roll Again? Yes.");
-            int Roll = Roll();
-            out.println("You rolls a " + Roll);
-            while (Score + counter < 100)
+         } else if (num1 == 1 && num2 > 1 || num1 > 1 && num2 == 1) {
+             score = score + 0;
+             System.out.println("your score" + score);
 
+         } else if (num1 > 1 && num2 > 1) {
+             score = score + num1 + num2;
+             System.out.println("your score" + score);
 
-                while (Roll != 1) {
-                    counter += Roll;
-                    out.println("Do you want to roll more? (Y/N)");
-                    answer = scan.nextLine();
+             System.out.println("Do you still want to play?");
+             userResponse = Keyboard.nextLine();
 
-                    if (answer.equals("N")) {
-                        out.println("Thank you For Playing.");
-
-                        out.println("Player's score reached 100!");
-                        exit(0);
+         }
+         }while (userResponse.equalsIgnoreCase("Y") && score < 100) ;
 
 
+         System.out.println("You have scored over 100.Thank you for playing");
+         System.out.println("Roll again No?");
 
 
-                        }
-
-                    }
-
-                }
+     }
         }
-    }
+
+
+
+
+
+
+
 
 
 
